@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😈 DevilVNMode</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Metal Mania', cursive;
+      background: linear-gradient(45deg, #0a0a0a, #1a001a);
+      color: #ff3333;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 0 0 20px red, 0 0 40px crimson;
+      margin-top: 20px;
+    }
+    .btn {
+      display: block;
+      width: 80%; max-width: 320px;
+      margin: 15px auto;
+      padding: 18px;
+      font-size: 20px;
+      border: 2px solid #ff3333;
+      border-radius: 14px;
+      background: transparent;
+      color: #ff3333;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px red, inset 0 0 10px black;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: red;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px crimson, 0 0 50px red;
+    }
+    #ping {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff6666;
+      text-shadow: 0 0 10px red;
+    }
+    #messages {
+      background: rgba(255,0,0,0.1);
+      border: 2px solid #660000;
+      padding: 10px;
+      border-radius: 10px;
+      height: 160px;
+      overflow-y: auto;
+      margin: 15px;
+      color: #ff9999;
+    }
+    input {
+      width: 65%; padding: 10px;
+      border-radius: 8px; border: 2px solid red;
+      background: black; color: #ffcccc;
+    }
+    .send {
+      padding: 10px; border-radius: 8px; border:none;
+      background: crimson; color: white; cursor: pointer;
+    }
+    .send:hover {
+      background: red; box-shadow: 0 0 15px red;
+    }
+  </style>
+</head>
+<body>
+  <h1>😈 DevilVNMode</h1>
+  <button class="btn" onclick="alert('🔥 RAM đã bị thiêu cháy! Giải phóng bộ nhớ!')">🔥 Xoá RAM</button>
+  <button class="btn" onclick="alert('⚡ Kích hoạt tăng tốc mạng: DNS 1.1.1.1')">⚡ Bùng nổ mạng</button>
+  <button class="btn" onclick="alert('🎮 Chế độ Ma Vương bật! Sẵn sàng chiến game!')">🎮 Devil Game Mode</button>
+  <div id="ping">Đang đo ping...</div>
+
+  <h2>👑 Ma Vương</h2>
+  <div id="messages"></div>
+  <input id="userInput" placeholder="Ra lệnh cho Ma Vương...">
+  <button class="send" onclick="sendMessage()">👹 Gửi</button>
+
+  <script>
+    // Đo ping
+    async function checkPing(){
+      let start=Date.now();
+      try{
+        await fetch("https://www.google.com",{mode:"no-cors"});
+        let latency=Date.now()-start;
+        document.getElementById("ping").innerText="Ping: "+latency+"ms ⚡";
+      }catch{
+        document.getElementById("ping").innerText="Không đo được ping ❌";
+      }
+    }
+    setInterval(checkPing,3000);checkPing();
+
+    // Ma Vương chat
+    let devilAIActive = false;
+
+    function sendMessage(){
+      let input=document.getElementById("userInput").value;
+      if(!input) return;
+      let box=document.getElementById("messages");
+
+      // Tin nhắn của Chủ Nhân
+      box.innerHTML+="<div><b>👑 Chủ Nhân:</b> "+input+"</div>";
+
+      // Nếu lần đầu kích hoạt
+      if(!devilAIActive){
+        box.innerHTML+="<div>😈 Ma Vương: Đang thức tỉnh... Kích hoạt Chế Độ Ma Vương! 🔥</div>";
+        devilAIActive = true;
+      } else {
+        // Trả lời bình thường
+        let reply="😈 Ma Vương: Chủ Nhân hãy giải phóng RAM để mượt hơn!";
+        if(input.toLowerCase().includes("dns")) reply="😈 Ma Vương: DNS nhanh nhất là 1.1.1.1 hoặc 8.8.8.8 ⚡, thưa Chủ Nhân.";
+        if(input.toLowerCase().includes("ping")) reply="😈 Ma Vương: Ping cao ư? Chủ Nhân hãy thử đổi sang 4G hoặc WiFi mạnh hơn.";
+        if(input.toLowerCase().includes("lag")) reply="😈 Ma Vương: Hãy bật Devil Game Mode để phá lag, Chủ Nhân!";
+        box.innerHTML+="<div>"+reply+"</div>";
+      }
+
+      // Reset input
+      document.getElementById("userInput").value="";
+      box.scrollTop=box.scrollHeight;
+    }
+  </script>
+</body>
+</html>
